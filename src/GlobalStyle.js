@@ -85,18 +85,18 @@ li {
 ${"" /* resuable code section  */}
 
 .container {
-  max-width: 120rem;
+  max-width: 120rem;   /* 1200px*/
   margin: 0 auto;
 }
 
 .grid {
   display: grid;
-  gap: 9rem;
+  gap: 9rem;         /* gap between two grid is 90px(text and img section*/
 }
 
 .grid-two-column {
   grid-template-columns: repeat(2, 1fr);
-
+/*  two grid with equal frame*/
 }
 
 .grid-three-column {
