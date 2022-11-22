@@ -5,15 +5,19 @@ import styled from "styled-components";
 const Star = ({ stars, reviews }) => {
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
-    debugger;
+    debugger; // supose star=4.4
+    //then index=[i=0,i=1,i=2,i=3,i=4]
     return (
       <span key={index}>
-        {stars >= index + 1 ? (
+        {stars >= index + 1 ? ( //4.4>=0+1=1  *  *  *  *
           <FaStar className="icon" />
-        ) : stars >= number ? (
-          <FaStarHalfAlt className="icon" />
+        ) : // 4.4>=1+1=2...
+        // 4.4>=4+1 false out from 1st loop move to second
+        stars >= number ? (
+          <FaStarHalfAlt className="icon" /> // 4.4>=4+0.5 false
         ) : (
-          <AiOutlineStar className="icon" />
+          //then
+          <AiOutlineStar className="icon" /> // true
         )}
       </span>
     );
