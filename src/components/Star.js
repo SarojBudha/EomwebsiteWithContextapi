@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Star = ({ stars, reviews }) => {
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
-    debugger; // supose star=4.4
+    // debugger; // supose star=4.4
     //then index=[i=0,i=1,i=2,i=3,i=4]
     return (
       <span key={index}>
