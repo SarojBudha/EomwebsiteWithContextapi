@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useFilterContext } from "../context/filter_context";
 import { FaCheck } from "react-icons/fa";
+import { Button } from "../styles/Button";
 
 const FilterSection = () => {
   const {
-    filters: { text, category, company },
+    filters: { text, category, company, color },
     all_products,
     updateFilterValue,
+    clearFilters,
   } = useFilterContext();
 
   //to get unique dta of each field in category from api
@@ -15,7 +17,12 @@ const FilterSection = () => {
     let newVal = data.map((curElem) => {
       return curElem[property];
     });
-    return (newVal = ["all", ...new Set(newVal)]); //for unique name of category from api and  add  "All" is not avialabe in api so
+
+    if (property === "colors") {
+      // return [(newVal = "ALL"), ...new Set([].concat(...newVal))];
+      newVal = newVal.flat(); //union of an array
+    }
+    return (newVal = ["all", ...new Set(newVal)]); //for unique name (i.e to remove duplicate value of category from api and  add  "All" is not avialabe in api so
   };
 
   //we could use this but it can be used for all filters like company ,color etc for each we ghave to make separate function so use above general
@@ -28,6 +35,8 @@ const FilterSection = () => {
   //we need unique data
   const categoryOnlyData = getUniqueData(all_products, "category");
   const companyData = getUniqueData(all_products, "company");
+  const colorsData = getUniqueData(all_products, "colors");
+
   //"category" from api
 
   return (
@@ -63,24 +72,68 @@ const FilterSection = () => {
         </div>
       </div>
       {/* ------company part */}
-      <div className="filter-company"></div>
-      <h3> COMPANY</h3>
-      <form action="#">
-        <select
-          name="company"
-          id="company"
-          className="filter-company--filter"
-          onClick={updateFilterValue}
-        >
-          {companyData.map((curElem, index) => {
+      <div className="filter-company">
+        <h3> COMPANY</h3>
+        <form action="#">
+          <select
+            name="company"
+            id="company"
+            className="filter-company--filter"
+            onClick={updateFilterValue}
+          >
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} value={curElem} name="company">
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
+        </form>
+      </div>
+      {/* ---color selection part */}
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
+        <div className="filter-color-style">
+          {colorsData.map((curColor, index) => {
+            if (curColor === "all") {
+              return (
+                <button
+                  key={index}
+                  value={curColor}
+                  name="color"
+                  type="button"
+                  // style={{ backgroundColor: curColor }}
+                  className="color-all--style"
+                  onClick={updateFilterValue}
+                >
+                  ALL
+                </button>
+              );
+            }
             return (
-              <option key={index} value={curElem} name="company">
-                {curElem}
-              </option>
+              <button
+                key={index}
+                value={curColor}
+                name="color"
+                type="button"
+                style={{ backgroundColor: curColor }}
+                className={color === curColor ? "btnStyle active" : "btnStyle"}
+                onClick={updateFilterValue}
+              >
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
+              </button>
             );
           })}
-        </select>
-      </form>
+        </div>
+      </div>
+      {/* ---pricefilter */}
+      {/* --filter clear section */}
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          clear Filters
+        </Button>
+      </div>
     </Wrapper>
   );
 };
