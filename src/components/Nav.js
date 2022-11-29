@@ -4,9 +4,14 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenuBoxed, CgClose } from "react-icons/cg";
 import { useState } from "react";
+import { useCartContext } from "../context/cart_context";
+import { Button } from "../styles/Button";
+import { useAuth0 } from "@auth0/auth0-react";
 const Nav = () => {
   // -----for responsive navbar ,if active class is present cgclose is shown  else cgmenu so statemanagement is used here we used usestate hooks
   const [menuIcon, setMenuIcon] = useState();
+  const { total_item } = useCartContext();
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   // ----------
   const Nav = styled.nav`
@@ -185,6 +190,22 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
+          {isAuthenticated && <p>{user.name}</p>}
+
+          {isAuthenticated ? (
+            <li>
+              <button
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                logout
+              </button>
+            </li>
+          ) : (
+            <li>
+              <Button onClick={() => loginWithRedirect()}>login</Button>
+            </li>
+          )}
+
           <li>
             <NavLink
               to="/Cart"
@@ -192,7 +213,7 @@ const Nav = () => {
               onClick={() => setMenuIcon(false)}
             >
               <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item">10</span>
+              <span className="cart-total--item">{total_item}</span>
             </NavLink>
           </li>
         </ul>
