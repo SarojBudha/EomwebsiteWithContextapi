@@ -106,7 +106,7 @@ const Nav = () => {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: #fff;
+        background-color: #aadef4;
 
         display: flex;
         justify-content: center;

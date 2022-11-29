@@ -17,7 +17,7 @@ const HeroSection = ({ myData }) => {
               discounts on all our products with a very flexible and eco
               freindly price range
             </p>
-            <NavLink>
+            <NavLink to="/products">
               <Button>shop now</Button>
             </NavLink>
           </div>
