@@ -40,6 +40,7 @@ const Contact = () => {
     <Wrapper>
       <h2 className="common-heading">contact page</h2>
       <iframe
+        title="contact"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28247.885656168823!2d85.27950518167272!3d27.748586852968725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18cb7575b901%3A0x5b3e2d3aaa25835b!2sNepaltar%2C%20Tarakeshwar%2044600!5e0!3m2!1sen!2snp!4v1668954834344!5m2!1sen!2snp"
         width="100%"
         height="450"

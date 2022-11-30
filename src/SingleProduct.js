@@ -20,11 +20,11 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const {
-    id: alias,
     name,
     company,
     price,
     description,
+    // eslint-disable-next-line no-unused-vars
     category,
     stock,
     stars,
