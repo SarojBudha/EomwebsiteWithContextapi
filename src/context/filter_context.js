@@ -5,6 +5,7 @@ import { useProductContext } from "./productcontex";
 import reducer from "../reducer/filterReducer"; //filterreducer as reducer
 
 const FilterContext = createContext();
+
 const initialState = {
   filter_products: [],
   all_products: [],
@@ -14,7 +15,7 @@ const initialState = {
     text: "",
     category: "all",
     company: "all",
-    colors: "all",
+    color: "all",
   },
 };
 
@@ -56,7 +57,7 @@ export const FilterContextProvider = ({ children }) => {
   }, [products, state.sorting_value, state.filters]);
   //to load all products for grid and list view
   useEffect(() => {
-    dispatch({ type: "LOAD_FILTER_PRODUCT", payload: products });
+    dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
   }, [products]);
 
   return (

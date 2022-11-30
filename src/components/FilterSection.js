@@ -63,6 +63,7 @@ const FilterSection = () => {
                 type="button"
                 name="category"
                 value={curElem}
+                className={curElem === category ? "active" : ""}
                 onClick={updateFilterValue}
               >
                 {curElem}
@@ -78,7 +79,7 @@ const FilterSection = () => {
           <select
             name="company"
             id="company"
-            className="filter-company--filter"
+            className="filter-company--select"
             onClick={updateFilterValue}
           >
             {companyData.map((curElem, index) => {
