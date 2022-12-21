@@ -60,7 +60,7 @@ const Footer = () => {
             </div>
             <div className="footer-contact">
               <h3>Call Us</h3>
-              <h3>+9779843678629</h3>
+              <h3>+97798XXXXXXXX</h3>
             </div>
           </div>
 
